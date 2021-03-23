@@ -124,6 +124,7 @@ import org.spongepowered.api.util.orientation.Orientation;
 import org.spongepowered.api.util.weighted.WeightedSerializableObject;
 import org.spongepowered.api.util.weighted.WeightedTable;
 import org.spongepowered.api.world.LocatableBlock;
+import org.spongepowered.api.world.portal.Portal;
 import org.spongepowered.api.world.server.ServerLocation;
 import org.spongepowered.api.world.server.ServerWorld;
 import org.spongepowered.math.vector.Vector2i;
@@ -356,6 +357,8 @@ public final class TypeTokens {
     public static final TypeToken<PluginContainer> PLUGIN_CONTAINER_TOKEN = new TypeToken<PluginContainer>() {};
 
     public static final TypeToken<Value<PluginContainer>> PLUGIN_CONTAINER_VALUE_TOKEN = new TypeToken<Value<PluginContainer>>() {};
+
+    public static final TypeToken<Portal> PORTAL_TYPE_TOKEN = new TypeToken<Portal>() {};
 
     public static final TypeToken<Value<PortionType>> PORTION_TYPE_VALUE_TOKEN = new TypeToken<Value<PortionType>>() {};
 
