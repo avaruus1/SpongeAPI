@@ -25,6 +25,7 @@
 package org.spongepowered.api.world.server;
 
 import org.spongepowered.api.util.Ticks;
+import org.spongepowered.api.util.annotation.DoNotStore;
 import org.spongepowered.api.world.chunk.Chunk;
 import org.spongepowered.math.vector.Vector3i;
 
@@ -34,6 +35,7 @@ import java.util.Optional;
 /**
  * Manages {@link Chunk chunks} for a {@link ServerWorld}.
  */
+@DoNotStore
 public interface ChunkManager {
 
     /**
