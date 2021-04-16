@@ -41,7 +41,7 @@ public interface ChunkManager {
      *
      * @return The {@link ServerWorld}
      */
-    ServerWorld getWorld();
+    ServerWorld world();
 
     /**
      * Checks if the provided {@link Ticket} is valid for the world this manager
@@ -57,7 +57,7 @@ public interface ChunkManager {
      *
      * @return The {@link Ticks}
      */
-    Ticks getTimeLeft(Ticket<?> ticket);
+    Ticks timeLeft(Ticket<?> ticket);
 
     /**
      * Request a {@link Ticket} for the given {@link TicketType}.
@@ -101,6 +101,6 @@ public interface ChunkManager {
      * @param <T> The type of value the {@link Ticket} holds
      * @return A {@link Collection} of {@link Ticket tickets}
      */
-    <T> Collection<Ticket<T>> getTickets(TicketType<T> type);
+    <T> Collection<Ticket<T>> findTickets(TicketType<T> type);
 
 }
