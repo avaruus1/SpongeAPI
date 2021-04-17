@@ -382,7 +382,7 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<TeleportHelperFilter> TELEPORT_HELPER_FILTER = RegistryTypes.spongeKeyInGame("teleport_helper_filter");
 
-    public static final RegistryType<TicketType<?>> TICKET_TYPE = RegistryTypes.spongeKeyInGame("ticket_type");
+    public static final DefaultedRegistryType<TicketType<?>> TICKET_TYPE = RegistryTypes.spongeKeyInGame("ticket_type");
 
     public static final DefaultedRegistryType<TransactionType> TRANSACTION_TYPE = RegistryTypes.spongeKeyInGame("transaction_type");
 

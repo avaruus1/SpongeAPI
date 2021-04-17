@@ -53,6 +53,11 @@ public final class TicketTypes {
      * {@link Chunk chunks} are loaded, but are not guaranteed to be loaded at
      * any time in the future, that is, the lifetime of such a ticket is
      * effectively {@link Ticks#zero() zero ticks}.
+     *
+     * <p>The position represented by the {@link Vector3i} is a <strong>chunk
+     * position</strong>, not a block position, so when requesting a ticket
+     * using {@link ChunkManager#requestTicket( TicketType, Vector3i, Object, int)},
+     * the second and third parameter should be the same.</p>
      */
     public static final DefaultedRegistryReference<TicketType<Vector3i>> FORCED = TicketTypes.key(ResourceKey.sponge("forced"));
 
@@ -60,6 +65,13 @@ public final class TicketTypes {
      * Represents {@link Ticket tickets} that are intended to ensure that the
      * target {@link Chunk chunks} around a {@link Portal} are loaded, ready to
      * accept {@link Entity entities} that travel through it.
+     *
+     * <p>The position represented by the {@link Vector3i} is a <strong>block
+     * position</strong>, specifically, it is intended it is that of the exit
+     * point of a portal. When requesting a ticket using
+     * {@link ChunkManager#requestTicket( TicketType, Vector3i, Object, int)},
+     * the second parameter represents a chunk position, the third parameter
+     * represents a block position.</p>
      */
     public static final DefaultedRegistryReference<TicketType<Vector3i>> PORTAL = TicketTypes.key(ResourceKey.sponge("portal"));
 
