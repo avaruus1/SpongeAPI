@@ -62,6 +62,8 @@ import org.spongepowered.api.service.permission.Subject;
 import org.spongepowered.api.util.Builder;
 import org.spongepowered.api.util.Color;
 import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.world.Locatable;
+import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.server.ServerLocation;
 import org.spongepowered.api.world.server.ServerWorld;
 import org.spongepowered.configurate.util.Types;
@@ -722,6 +724,32 @@ public interface Parameter {
             vvp.defaultNamespace(namespace);
         }
         return Parameter.builder(type, vvp.build());
+    }
+
+    @SafeVarargs
+    static Function<CommandContext, RegistryHolder> registryFromOptions(final Function<CommandContext, Optional<RegistryHolder>>... functions){
+        if (functions.length == 0) {
+            throw new IllegalArgumentException("Functions cannot be empty");
+        }
+        return ctx -> Arrays.stream(functions)
+            .map(function -> function.apply(ctx))
+            .filter(Optional::isPresent)
+            .map(Optional::get)
+            .findFirst()
+            .orElseThrow(() -> new IllegalArgumentException("Context did not contain any references of registry holders"));
+    }
+
+    static Function<CommandContext, Optional<RegistryHolder>> registryByLocatable() {
+        return ctx -> ctx.cause()
+            .first(Locatable.class)
+            .map(Locatable::world)
+            .map(World::registries);
+    }
+
+    static Function<CommandContext, Optional<RegistryHolder>> registryByWorld() {
+        return ctx -> ctx.cause()
+            .first(ServerWorld.class)
+            .map(ServerWorld::registries);
     }
 
     /**
