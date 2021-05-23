@@ -52,7 +52,20 @@ public interface ChunkManager {
      * @param ticket The ticket to check.
      * @return true if so
      */
-    boolean isValid(Ticket<?> ticket);
+    boolean valid(Ticket<?> ticket);
+
+    /**
+     * Returns whether the provided {@link Ticket} has been processed, that is,
+     * it has been recognised by the engine and the {@link Chunk chunks} that
+     * this ticket affects have at least been scheduled for loading.
+     *
+     * <p><strong>Note:</strong> a processed ticket is no guarantee that a chunk
+     * has been loaded, instead it indicates that the ticket has been recognised
+     * by the manager <em>at some point</em>.</p>
+     *
+     * @return {@code true} if the ticket has been processed.
+     */
+    boolean processed(Ticket<?> ticket);
 
     /**
      * Gets the {@link Ticks} remaining on the supplied ticket.
@@ -60,6 +73,21 @@ public interface ChunkManager {
      * @return The {@link Ticks}
      */
     Ticks timeLeft(Ticket<?> ticket);
+
+    /**
+     * Request a {@link Ticket} for a given {@link TicketType} that supports a
+     * chunk position.
+     *
+     * @param type The type of ticket to request.
+     * @param chunkOrigin The chunk co-ordinates of the central {@link Chunk}
+     *                    affected by this {@link Ticket}
+     * @param radius The radius of the area, in chunks, that this {@link Ticket}
+     *               affects.
+     * @return The ticket, if granted.
+     */
+    default Optional<Ticket<Vector3i>> requestTicket(final TicketType<Vector3i> type, final Vector3i chunkOrigin, final int radius) {
+        return this.requestTicket(type, chunkOrigin, chunkOrigin, radius);
+    }
 
     /**
      * Request a {@link Ticket} for the given {@link TicketType}.
