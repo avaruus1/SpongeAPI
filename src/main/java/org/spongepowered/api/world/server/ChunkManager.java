@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.world.server;
 
+import org.spongepowered.api.registry.DefaultedRegistryReference;
 import org.spongepowered.api.util.Ticks;
 import org.spongepowered.api.util.annotation.DoNotStore;
 import org.spongepowered.api.world.chunk.Chunk;
@@ -85,7 +86,24 @@ public interface ChunkManager {
      *               affects.
      * @return The ticket, if granted.
      */
-    default Optional<Ticket<Vector3i>> requestTicket(final TicketType<Vector3i> type, final Vector3i chunkOrigin, final int radius) {
+    default Optional<Ticket<Vector3i>> requestTicket(final DefaultedRegistryReference<TicketType<Vector3i>> type,
+                                                     final Vector3i chunkOrigin, final int radius) {
+        return this.requestTicket(type.get(), chunkOrigin, radius);
+    }
+
+    /**
+     * Request a {@link Ticket} for a given {@link TicketType} that supports a
+     * chunk position.
+     *
+     * @param type The type of ticket to request.
+     * @param chunkOrigin The chunk co-ordinates of the central {@link Chunk}
+     *                    affected by this {@link Ticket}
+     * @param radius The radius of the area, in chunks, that this {@link Ticket}
+     *               affects.
+     * @return The ticket, if granted.
+     */
+    default Optional<Ticket<Vector3i>> requestTicket(final TicketType<Vector3i> type, final Vector3i chunkOrigin,
+                                                     final int radius) {
         return this.requestTicket(type, chunkOrigin, chunkOrigin, radius);
     }
 
@@ -102,6 +120,23 @@ public interface ChunkManager {
      * @return The ticket, if granted.
      */
     <T> Optional<Ticket<T>> requestTicket(TicketType<T> type, Vector3i chunkOrigin, T value, int radius);
+
+    /**
+     * Request a {@link Ticket} for the given {@link TicketType}.
+     *
+     * @param type The type of ticket to request.
+     * @param chunkOrigin The chunk co-ordinates of the central {@link Chunk}
+     *                    affected by this {@link Ticket}
+     * @param value The value to register the ticket with.
+     * @param radius The radius of the area, in chunks, that this {@link Ticket}
+     *               affects.
+     * @param <T> The type of the supplied {@code value}.
+     * @return The ticket, if granted.
+     */
+    default <T> Optional<Ticket<T>> requestTicket(final DefaultedRegistryReference<TicketType<T>> type,
+                                                  final Vector3i chunkOrigin, final T value, final int radius) {
+        return this.requestTicket(type.get(), chunkOrigin, value, radius);
+    }
 
     /**
      * Attempts to renew this ticket, resetting the lifetime to the default.
@@ -132,5 +167,17 @@ public interface ChunkManager {
      * @return A {@link Collection} of {@link Ticket tickets}
      */
     <T> Collection<Ticket<T>> findTickets(TicketType<T> type);
+
+    /**
+     * Gets all currently active {@link Ticket tickets} that are of the
+     * provided {@link TicketType}.
+     *
+     * @param type The {@link TicketType} to retrieve tickets for
+     * @param <T> The type of value the {@link Ticket} holds
+     * @return A {@link Collection} of {@link Ticket tickets}
+     */
+    default <T> Collection<Ticket<T>> findTickets(final DefaultedRegistryReference<TicketType<T>> type) {
+        return this.findTickets(type.get());
+    }
 
 }

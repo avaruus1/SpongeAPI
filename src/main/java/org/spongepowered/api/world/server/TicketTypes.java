@@ -52,14 +52,14 @@ public final class TicketTypes {
      * Represents {@link Ticket tickets} that ensures the target
      * {@link Chunk chunks} are loaded, but are not guaranteed to be loaded at
      * any time in the future, that is, the lifetime of such a ticket is
-     * effectively {@link Ticks#zero() zero ticks}.
+     * effectively one {@link Ticks tick}.
      *
      * <p>The position represented by the {@link Vector3i} is a <strong>chunk
      * position</strong>, not a block position, so when requesting a ticket
      * using {@link ChunkManager#requestTicket( TicketType, Vector3i, Object, int)},
      * the second and third parameter should be the same.</p>
      */
-    public static final DefaultedRegistryReference<TicketType<Vector3i>> FORCED = TicketTypes.key(ResourceKey.sponge("forced"));
+    public static final DefaultedRegistryReference<TicketType<Vector3i>> STANDARD = TicketTypes.key(ResourceKey.sponge("standard"));
 
     /**
      * Represents {@link Ticket tickets} that are intended to ensure that the
