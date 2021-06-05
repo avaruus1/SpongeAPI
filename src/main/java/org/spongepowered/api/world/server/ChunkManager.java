@@ -56,19 +56,6 @@ public interface ChunkManager {
     boolean valid(Ticket<?> ticket);
 
     /**
-     * Returns whether the provided {@link Ticket} has been processed, that is,
-     * it has been recognised by the engine and the {@link Chunk chunks} that
-     * this ticket affects have at least been scheduled for loading.
-     *
-     * <p><strong>Note:</strong> a processed ticket is no guarantee that a chunk
-     * has been loaded, instead it indicates that the ticket has been recognised
-     * by the manager <em>at some point</em>.</p>
-     *
-     * @return {@code true} if the ticket has been processed.
-     */
-    boolean processed(Ticket<?> ticket);
-
-    /**
      * Gets the {@link Ticks} remaining on the supplied ticket.
      *
      * @return The {@link Ticks}
