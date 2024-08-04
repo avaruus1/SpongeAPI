@@ -279,6 +279,7 @@ import org.spongepowered.api.world.storage.WorldProperties;
 import org.spongepowered.api.world.weather.Weather;
 import org.spongepowered.api.world.weather.WeatherType;
 import org.spongepowered.api.world.weather.WeatherTypes;
+import org.spongepowered.math.matrix.Matrix4d;
 import org.spongepowered.math.vector.Vector2i;
 import org.spongepowered.math.vector.Vector3d;
 import org.spongepowered.math.vector.Vector3i;
@@ -876,6 +877,13 @@ public final class Keys {
      * <p>On a {@link TextDisplay} this is modifiable.</p>
      */
     public static final Key<Value<Component>> DISPLAY_NAME = Keys.key(ResourceKey.sponge("display_name"), Component.class);
+
+    /**
+     * The transformation of a display entity in a 4x4 matrix form.
+     *
+     * <p>For more information, see <a href="https://minecraft.wiki/w/Display">
+     */
+    public static final Key<Value<Matrix4d>> DISPLAY_TRANSFORM = Keys.key(ResourceKey.sponge("display_transform"), Matrix4d.class);
 
     /**
      * The dominant {@link HandPreference} of an {@link Agent} entity.
