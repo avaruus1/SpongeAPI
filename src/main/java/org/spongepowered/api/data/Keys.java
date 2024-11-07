@@ -2438,6 +2438,11 @@ public final class Keys {
     public static final Key<Value<Ticks>> MIN_SPAWN_DELAY = Keys.key(ResourceKey.sponge("min_spawn_delay"), Ticks.class);
 
     /**
+     * Location for the model of an {@link ItemStack}
+     */
+    public static final Key<Value<ResourceKey>> MODEL = Keys.key(ResourceKey.sponge("model"), ResourceKey.class);
+
+    /**
      * The moisture value of a {@link BlockTypes#FARMLAND} {@link BlockState}.
      */
     public static final Key<Value<Integer>> MOISTURE = Keys.key(ResourceKey.sponge("moisture"), Integer.class);
