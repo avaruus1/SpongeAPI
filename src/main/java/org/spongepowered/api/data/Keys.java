@@ -2439,6 +2439,8 @@ public final class Keys {
 
     /**
      * Location for the model of an {@link ItemStack}
+     *
+     * @see <a href="https://minecraft.wiki/w/Data_component_format#item_model">The item_model data component</a>
      */
     public static final Key<Value<ResourceKey>> MODEL = Keys.key(ResourceKey.sponge("model"), ResourceKey.class);
 
