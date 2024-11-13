@@ -2438,9 +2438,9 @@ public final class Keys {
     public static final Key<Value<Ticks>> MIN_SPAWN_DELAY = Keys.key(ResourceKey.sponge("min_spawn_delay"), Ticks.class);
 
     /**
-     * Location for the model of an {@link ItemStack}
+     * Location of the resource pack model for an {@link ItemStack}.
      *
-     * @see <a href="https://minecraft.wiki/w/Data_component_format#item_model">The item_model data component</a>
+     * @see <a href="https://minecraft.wiki/w/Model">Model</a>
      */
     public static final Key<Value<ResourceKey>> MODEL = Keys.key(ResourceKey.sponge("model"), ResourceKey.class);
 
