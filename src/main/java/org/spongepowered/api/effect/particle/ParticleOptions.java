@@ -129,6 +129,16 @@ public final class ParticleOptions {
     public static final DefaultedRegistryReference<ParticleOption<Double>> OPACITY = ParticleOptions.key(ResourceKey.sponge("opacity"));
 
     /**
+     * This option will affect the power of a particle.
+     * The only vanilla {@link ParticleType} this option is applicable to is:
+     *
+     * <ul>
+     *   <li>{@link ParticleTypes#DRAGON_BREATH}</li>
+     * </ul>
+     */
+    public static final DefaultedRegistryReference<ParticleOption<Double>> POWER = ParticleOptions.key(ResourceKey.sponge("power"));
+
+    /**
      * This option will affect the amount of particles that are spawned.
      *
      * <p>The quantity must be at least 1, or a {@link IllegalArgumentException}
